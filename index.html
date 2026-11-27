@@ -3,11 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="light" />
     <link rel="icon" href="data:," />
     <title>Freight Class, Density, DIM Weight &amp; CWT Calculators — Free LTL Tools</title>
     <meta name="description" content="Free freight class, density, DIM weight and CWT cost calculators using the current 13-tier NMFC density scale. Estimates only — the carrier's class is final." />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://activemuse5.github.io/freight-ltl-calculators/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Freight Class, Density, DIM Weight & CWT Calculators — Free LTL Tools" />
     <meta property="og:description" content="Free freight class, density, DIM weight and CWT cost calculators using the current 13-tier NMFC density scale. Estimates only — the carrier's class is final." />
@@ -102,40 +103,34 @@
         font-display: swap;
       }
       :root {
-        color-scheme: light dark;
-        --bg: #f4f6f8;
+        color-scheme: light;
+        --bg: #f8fafc;
         --surface: #ffffff;
-        --surface-2: #edf1f5;
-        --ink: #182230;
-        --muted: #4d5b6d;
-        --line: #d3dbe3;
-        --accent: #b34a00;
+        --surface-2: #f1f5f9;
+        --ink: #0f172a;
+        --muted: #475569;
+        --line: #e2e8f0;
+        --line-strong: #cbd5e1;
+        --accent: #1d4ed8;
+        --accent-bright: #2563eb;
         --accent-ink: #ffffff;
-        --accent-soft: #fdeee1;
-        --result-bg: #16222f;
-        --result-ink: #f5f8fb;
-        --result-muted: #a9bccd;
-        --focus: #b34a00;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #0e141c;
-          --surface: #161f2b;
-          --surface-2: #1d2938;
-          --ink: #e9eff6;
-          --muted: #a3b2c3;
-          --line: #2c3a4b;
-          --accent: #ff8a3d;
-          --accent-ink: #1c1206;
-          --accent-soft: #3a2716;
-          --result-bg: #0a0f16;
-          --result-ink: #f5f8fb;
-          --result-muted: #93a7bc;
-          --focus: #ff8a3d;
-        }
+        --accent-soft: #eff6ff;
+        --accent-row: #dbeafe;
+        --highlight: #ea580c;
+        --highlight-bright: #f97316;
+        --highlight-soft: #fff7ed;
+        --highlight-line: #fed7aa;
+        --result-bg: #eff6ff;
+        --result-line: #bfdbfe;
+        --result-ink: #0f172a;
+        --result-muted: #475569;
+        --focus: #2563eb;
+        --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 12px 32px -14px rgba(15, 23, 42, 0.14);
+        --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05), 0 6px 16px -8px rgba(15, 23, 42, 0.10);
       }
       * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+      @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
       body {
         margin: 0;
         background: var(--bg);
@@ -157,11 +152,15 @@
       /* Hero */
       .hero { padding: 44px 0 8px; }
       .hero h1 { font-size: clamp(1.75rem, 4.5vw, 2.6rem); font-weight: 700; letter-spacing: -0.01em; max-width: 22ch; }
+      .hero h1::after {
+        content: ""; display: block; width: 76px; height: 5px; border-radius: 3px;
+        background: var(--accent); margin-top: 18px;
+      }
       .hero .lede { margin-top: 14px; font-size: 1.08rem; color: var(--muted); max-width: 68ch; }
       .hero .lede strong { color: var(--ink); }
 
       /* Start here */
-      .start-here { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+      .start-here { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; box-shadow: var(--shadow-sm); }
       .start-here h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
       .start-steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
       .start-steps li { display: flex; gap: 12px; align-items: flex-start; }
@@ -182,12 +181,13 @@
         border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
         color: var(--ink); text-decoration: none; font-size: 0.92rem; font-weight: 500;
       }
-      .tool-nav a:hover { border-color: var(--accent); color: var(--accent); }
+      .tool-nav a:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
       /* Tool cards */
       .tool {
         margin-top: 26px; background: var(--surface); border: 1px solid var(--line);
-        border-radius: 12px; padding: 26px 26px 22px; scroll-margin-top: 16px;
+        border-radius: 16px; padding: 26px 26px 22px; scroll-margin-top: 16px;
+        box-shadow: var(--shadow);
       }
       .tool-head h2 { font-size: 1.45rem; font-weight: 700; }
       .tool-head p { margin-top: 6px; color: var(--muted); max-width: 72ch; }
@@ -195,9 +195,10 @@
       .field { margin-bottom: 14px; }
       .field label { display: block; font-weight: 600; font-size: 0.93rem; margin-bottom: 6px; }
       .field input, .field select {
-        width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px;
+        width: 100%; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 10px;
         background: var(--surface); color: var(--ink);
       }
+      .field input:focus, .field select:focus { border-color: var(--accent-bright); }
       .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
       .field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
       .toggles { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
@@ -213,24 +214,27 @@
 
       .result {
         background: var(--result-bg); color: var(--result-ink);
-        border-radius: 10px; padding: 20px 22px; align-self: start;
+        border: 1px solid var(--result-line);
+        border-radius: 14px; padding: 22px 24px; align-self: start;
+        box-shadow: var(--shadow-sm);
       }
-      .result .r-label { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--result-muted); }
+      .result .r-label { font-size: 0.82rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--result-muted); }
       .result .r-big {
-        font-family: "IBM Plex Mono", monospace; font-size: 2.5rem; font-weight: 600;
-        line-height: 1.1; margin: 4px 0 2px; word-break: break-word;
+        font-family: "IBM Plex Mono", monospace; font-size: clamp(2.6rem, 6vw, 3.25rem); font-weight: 600;
+        color: var(--accent); line-height: 1.1; margin: 6px 0 2px; word-break: break-word;
       }
       .result dl { margin: 14px 0 0; display: grid; gap: 8px; }
-      .result .r-row { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(128, 150, 175, 0.35); padding-top: 8px; }
+      .result .r-row { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--result-line); padding-top: 8px; }
       .result dt { color: var(--result-muted); font-size: 0.92rem; }
       .result dd { margin: 0; font-family: "IBM Plex Mono", monospace; font-weight: 600; text-align: right; }
       .result .r-note { margin-top: 12px; font-size: 0.93rem; color: var(--result-ink); }
       .formula { margin-top: 14px; font-size: 0.88rem; color: var(--muted); }
       .formula code { font-family: "IBM Plex Mono", monospace; font-size: 0.85em; }
       .notice {
-        margin-top: 12px; padding: 10px 14px; border-radius: 8px;
-        background: var(--accent-soft); font-size: 0.9rem;
+        margin-top: 12px; padding: 10px 14px; border-radius: 10px;
+        background: var(--highlight-soft); border: 1px solid var(--highlight-line); font-size: 0.9rem;
       }
+      .notice strong { color: var(--highlight); }
 
       /* Density table */
       .scale-table-wrap { margin-top: 24px; }
@@ -240,14 +244,14 @@
       table.scale th, table.scale td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line); }
       table.scale thead th { color: var(--muted); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; }
       table.scale td.cls, table.scale th.cls { text-align: right; font-family: "IBM Plex Mono", monospace; font-weight: 600; }
-      table.scale tr.is-match td { background: var(--accent-soft); font-weight: 600; }
+      table.scale tr.is-match td { background: var(--accent-row); font-weight: 700; }
       table.scale tr.is-match td.cls { color: var(--accent); }
 
       /* Guides */
       .section { margin-top: 52px; }
       .section > h2 { font-size: 1.6rem; font-weight: 700; }
       .section > .section-intro { margin-top: 8px; color: var(--muted); max-width: 72ch; }
-      .guide { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px; }
+      .guide { margin-top: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--shadow-sm); }
       .guide h3 { font-size: 1.25rem; }
       .guide p { margin-top: 10px; max-width: 74ch; }
       .guide h4 { margin: 18px 0 0; font-size: 1rem; }
@@ -262,13 +266,13 @@
       .worked li strong { font-weight: 600; }
 
       /* FAQ */
-      .faq-item { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 24px; }
+      .faq-item { margin-top: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 24px; box-shadow: var(--shadow-sm); }
       .faq-item h3 { font-size: 1.08rem; }
       .faq-item p { margin-top: 8px; max-width: 76ch; }
 
       /* Trust */
       .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
-      .trust-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; }
+      .trust-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow-sm); }
       .trust-card h3 { font-size: 1.08rem; }
       .trust-card p { margin-top: 8px; font-size: 0.95rem; }
       .contact-link { display: inline-block; padding: 10px 4px; font-weight: 600; }
@@ -276,23 +280,95 @@
       footer { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 22px; color: var(--muted); font-size: 0.92rem; }
       footer p + p { margin-top: 8px; }
 
+      /* ===== Polished light theme v2 ===== */
+      .topnav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); transition: box-shadow .2s ease; }
+      .topnav.is-scrolled { box-shadow: 0 6px 24px -10px rgba(15,23,42,.18); }
+      .topnav-inner { max-width: 1060px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: .98rem; line-height: 1.15; min-width: 0; }
+      .brand-mark { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 10px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px -4px rgba(37,99,235,.55); }
+      .brand small { display: block; font-weight: 600; font-size: .72rem; color: var(--highlight); letter-spacing: .04em; text-transform: uppercase; }
+      .topnav-links { display: flex; flex-wrap: wrap; gap: 2px; justify-content: flex-end; }
+      .topnav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 600; padding: 8px 9px; border-radius: 8px; white-space: nowrap; }
+      .topnav-links a:hover { color: var(--accent); background: var(--accent-soft); }
+      .hero { position: relative; padding: 38px 28px 30px; margin-top: 22px; border: 1px solid var(--line); border-radius: 16px; background: radial-gradient(560px 260px at 88% -40px, rgba(37,99,235,.14), transparent 65%), radial-gradient(420px 220px at -60px 110%, rgba(234,88,12,.08), transparent 60%), linear-gradient(rgba(29,78,216,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(29,78,216,.045) 1px, transparent 1px), #fff; background-size: auto, auto, 26px 26px, 26px 26px, auto; box-shadow: var(--shadow-sm); overflow: hidden; }
+      .hero-badge { display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--result-line); color: var(--accent); font-size: .8rem; font-weight: 700; letter-spacing: .02em; padding: 6px 12px; border-radius: 999px; box-shadow: var(--shadow-sm); }
+      .hero-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--highlight); display: inline-block; }
+      .hero h1 { margin-top: 16px; }
+      .hero-stats { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+      .hero-stats span { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; font-size: .88rem; font-weight: 600; color: var(--ink); }
+      .hero-stats span svg { color: var(--accent); flex: 0 0 auto; }
+      .tool { border-top: 4px solid var(--accent); scroll-margin-top: 88px; }
+      .tool-title-row { display: flex; align-items: center; gap: 12px; }
+      .tool-icon { flex: 0 0 auto; width: 42px; height: 42px; border-radius: 12px; background: var(--accent-soft); border: 1px solid var(--result-line); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+      .tool-icon.orange { background: var(--highlight-soft); border-color: var(--highlight-line); color: var(--highlight); }
+      .result { background: linear-gradient(160deg, #dbeafe 0%, var(--accent-soft) 48%, #fff 130%); }
+      .result dl { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .result .r-row { flex-direction: column; gap: 2px; border: 1px solid rgba(191,219,254,.9); background: rgba(255,255,255,.78); border-radius: 10px; padding: 10px 12px; }
+      .result .r-row dt { font-size: .8rem; font-weight: 600; }
+      .result .r-row dd { text-align: left; font-size: 1.02rem; }
+      .scale-table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+      .scale-table-scroll table.scale { min-width: 420px; }
+      table.scale thead th { position: sticky; top: 0; background: var(--surface-2); z-index: 1; }
+      table.scale tbody tr:nth-child(even) td { background: #f8fafc; }
+      table.scale tbody tr.is-match td { background: var(--accent-row) !important; font-weight: 700; box-shadow: inset 3px 0 0 var(--accent); }
+      .guide { border-top: 4px solid var(--accent); }
+      .guide-cta { margin-top: 18px !important; padding-top: 14px; border-top: 1px solid var(--line); }
+      .guide-cta a { font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+      .guide-cta a:hover { text-decoration: underline; }
+      .faq-item { position: relative; padding-right: 52px; }
+      .faq-item::after { content: "+"; position: absolute; top: 16px; right: 18px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; line-height: 1; }
+      .section, .tool { scroll-margin-top: 88px; }
+      .site-footer { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px; box-shadow: var(--shadow-sm); }
+      .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.2fr; gap: 22px; }
+      .footer-grid h3 { font-size: .92rem; color: var(--ink); margin-bottom: 10px; }
+      .footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+      .footer-grid a { text-decoration: none; font-weight: 500; }
+      .footer-grid a:hover { text-decoration: underline; }
+      .footer-bottom { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+      @media (max-width: 760px) {
+        .topnav-inner { padding: 8px 16px; align-items: flex-start; }
+        .brand small { display: none; }
+        .topnav-links a { padding: 7px 6px; font-size: .82rem; }
+        .hero { padding: 26px 18px 22px; }
+        .result dl { grid-template-columns: 1fr 1fr; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 420px) { .footer-grid { grid-template-columns: 1fr; } .topnav-links { gap: 0; } }
+
       @media (max-width: 760px) {
         .wrap { padding: 0 16px 48px; }
         .start-steps { grid-template-columns: 1fr; }
         .tool { padding: 20px 18px 18px; }
         .tool-grid { grid-template-columns: 1fr; gap: 18px; }
         .trust-grid { grid-template-columns: 1fr; }
-        .result .r-big { font-size: 2.1rem; }
+        .result .r-big { font-size: 2.35rem; }
         .field-row-3 { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
       }
     </style>
   </head>
   <body>
-    <main class="wrap">
+    <header class="topnav" id="topnav">
+      <div class="topnav-inner">
+        <a class="brand" href="#top" aria-label="Freight / LTL Calculators — home">
+          <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 8h13v9H1zM14 11h4l3 3v3h-7z"/><circle cx="6" cy="19" r="1.8"/><circle cx="17" cy="19" r="1.8"/></svg></span>
+          <span>Freight / LTL Calculators<small>Free LTL tools</small></span>
+        </a>
+        <nav class="topnav-links" aria-label="Site">
+          <a href="#freight-class">Freight Class</a><a href="#density">Density</a><a href="#dim-weight">DIM Weight</a><a href="#billable-weight">Billable</a><a href="#cwt-cost">CWT Cost</a><a href="#pallet-space">Pallet Space</a><a href="#guides">Guides</a><a href="#faq">FAQ</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap" id="top">
 
       <header class="hero">
+        <span class="hero-badge"><i aria-hidden="true"></i>Free LTL tools · Current NMFC scale</span>
         <h1>Freight class, density, DIM weight &amp; CWT calculators</h1>
         <p class="lede">Six free LTL tools that work the way carriers do: measure the freight, find its density, and read the class off the <strong>current 13-tier NMFC density scale (effective 19 July 2025)</strong>. No sign-up, nothing to install, and every result updates as you type. These are estimates only — the carrier's class is final.</p>
+        <div class="hero-stats" aria-label="Highlights">
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>6 free tools</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>No sign-up</span>
+          <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Estimates in seconds</span>
+        </div>
       </header>
 
       <section class="start-here" aria-labelledby="start-here-h">
@@ -327,7 +403,7 @@
       <!-- Tool 1: Freight Class -->
       <section class="tool" id="freight-class" data-tool="fc" aria-labelledby="fc-h">
         <div class="tool-head">
-          <h2 id="fc-h">1. Freight Class Calculator</h2>
+          <div class="tool-title-row"><span class="tool-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></svg></span><h2 id="fc-h">1. Freight Class Calculator</h2></div>
           <p>Enter the dimensions and weight of one piece (a pallet, crate or box). The calculator works out the total volume and density, then reads the estimated class off the 13-tier NMFC density scale.</p>
         </div>
         <div class="tool-grid">
@@ -390,7 +466,7 @@
         <div class="scale-table-wrap">
           <h3>The 13-tier NMFC density scale</h3>
           <p>Effective 19 July 2025 (Docket 2025-1). Lower bound inclusive, upper bound exclusive — exactly 10 pcf is class 92.5, and exactly 50 pcf is class 50. The row matching your result above is highlighted.</p>
-          <table class="scale" id="scale-table">
+          <div class="scale-table-scroll"><table class="scale" id="scale-table">
             <thead>
               <tr><th scope="col">Density (lb per cubic foot)</th><th scope="col" class="cls">Freight class</th></tr>
             </thead>
@@ -409,14 +485,14 @@
               <tr data-tier="11"><td>35 to less than 50 pcf</td><td class="cls">55</td></tr>
               <tr data-tier="12"><td>50 pcf or more</td><td class="cls">50</td></tr>
             </tbody>
-          </table>
+          </table></div>
         </div>
       </section>
 
       <!-- Tool 2: Density -->
       <section class="tool" id="density" data-tool="den" aria-labelledby="den-h">
         <div class="tool-head">
-          <h2 id="den-h">2. Density Calculator</h2>
+          <div class="tool-title-row"><span class="tool-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l2 13H4zM9 7a3 3 0 0 1 6 0"/></svg></span><h2 id="den-h">2. Density Calculator</h2></div>
           <p>Density — pounds per cubic foot — is the single number that drives density-based freight class. Enter a piece's size and weight to get its volume and density.</p>
         </div>
         <div class="tool-grid">
@@ -472,7 +548,7 @@
       <!-- Tool 3: DIM Weight -->
       <section class="tool" id="dim-weight" data-tool="dim" aria-labelledby="dim-h">
         <div class="tool-head">
-          <h2 id="dim-h">3. DIM Weight Calculator</h2>
+          <div class="tool-title-row"><span class="tool-icon orange" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17 17 3l4 4L7 21zM8 12l1.5 1.5M11 9l1.5 1.5M14 6l1.5 1.5"/></svg></span><h2 id="dim-h">3. DIM Weight Calculator</h2></div>
           <p>Dimensional (DIM) weight prices a package by the space it takes up, not just what it weighs. Carriers round DIM weight up to the next whole pound before billing.</p>
         </div>
         <div class="tool-grid">
@@ -524,7 +600,7 @@
       <!-- Tool 4: Billable Weight -->
       <section class="tool" id="billable-weight" data-tool="bill" aria-labelledby="bill-h">
         <div class="tool-head">
-          <h2 id="bill-h">4. Billable Weight Calculator</h2>
+          <div class="tool-title-row"><span class="tool-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M5 21h14M12 6l-5 6a3.5 3.5 0 0 0 10 0zM12 6l5 6"/><path d="M7 12l-2 5h4zM17 12l-2 5h4z"/></svg></span><h2 id="bill-h">4. Billable Weight Calculator</h2></div>
           <p>Carriers bill the greater of the actual weight and the DIM weight. Enter both sides of the comparison and see which one you will be charged for.</p>
         </div>
         <div class="tool-grid">
@@ -588,7 +664,7 @@
       <!-- Tool 5: CWT Cost -->
       <section class="tool" id="cwt-cost" data-tool="cwt" aria-labelledby="cwt-h">
         <div class="tool-head">
-          <h2 id="cwt-h">5. CWT Cost Estimator</h2>
+          <div class="tool-title-row"><span class="tool-icon orange" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c-.8-1.2-2.7-2-5-2-3 0-5 1.6-5 3.7 0 5 10 2.6 10 7.1 0 2.1-2 3.7-5 3.7-2.3 0-4.2-.8-5-2"/></svg></span><h2 id="cwt-h">5. CWT Cost Estimator</h2></div>
           <p>LTL linehaul is commonly quoted as a rate per CWT (hundredweight — 100 lb). Enter the shipment weight and the rate you were quoted to estimate the linehaul cost at that rate.</p>
         </div>
         <div class="tool-grid">
@@ -627,7 +703,7 @@
       <!-- Tool 6: Cubic Feet / Pallet Space -->
       <section class="tool" id="pallet-space" data-tool="pal" aria-labelledby="pal-h">
         <div class="tool-head">
-          <h2 id="pal-h">6. Cubic Feet / Pallet Space Calculator</h2>
+          <div class="tool-title-row"><span class="tool-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M4 17v-3h16v3M6 14V9h12v5M9 21v-4M15 21v-4M3 21h18"/></svg></span><h2 id="pal-h">6. Cubic Feet / Pallet Space Calculator</h2></div>
           <p>Work out how much trailer space a palletised shipment takes up, its total weight and overall density — and the estimated class that density points to.</p>
         </div>
         <div class="tool-grid">
@@ -709,6 +785,7 @@
             </ol>
           </div>
           <p>One caveat matters more than any other: the density scale is the fallback, not the final word. Your commodity's own NMFC item may assign a fixed class, or a class based on something other than density, and that item governs. Treat every density-based result as an estimate — the carrier's determination is final.</p>
+          <p class="guide-cta"><a href="#freight-class">Try the Freight Class Calculator <span aria-hidden="true">→</span></a></p>
         </article>
 
         <article class="guide">
@@ -730,6 +807,7 @@
             <li><strong>Rounding dimensions down.</strong> Carriers round up, and they measure the longest point, including bulging wrap or an overhanging carton. Rounding down makes your density look better than the carrier will find it.</li>
             <li><strong>Weighing without the pallet.</strong> The scale weight the carrier uses includes the pallet and packaging. Weigh the finished, wrapped unit exactly as it will be handed over.</li>
           </ul>
+          <p class="guide-cta"><a href="#density">Try the Density Calculator <span aria-hidden="true">→</span></a></p>
         </article>
 
         <article class="guide">
@@ -751,6 +829,7 @@
             <li><strong>Increase density.</strong> Pack tighter, remove void fill you don't need, and split one oversized box into two right-sized ones when the contents allow it.</li>
             <li><strong>Check both divisors.</strong> If you ship at retail rates, run the 166 divisor — the same box may bill several pounds lighter than the 139 result.</li>
           </ul>
+          <p class="guide-cta"><a href="#dim-weight">Try the DIM Weight Calculator <span aria-hidden="true">→</span></a></p>
         </article>
       </section>
 
@@ -811,9 +890,44 @@
         </div>
       </section>
 
-      <footer>
-        <p>Freight / LTL Calculators — free LTL tools. Revenue: $0.00 · Monetization: not active · Estimates only — the carrier's class is final.</p>
-        <p>Sources: NMFTA (NMFC density scale, Docket 2025-1), FedEx, UPS and Estes Express Lines. The density scale shown on this page is the one effective 19 July 2025.</p>
+      <footer class="site-footer">
+        <div class="footer-grid">
+          <div>
+            <h3>Freight / LTL Calculators</h3>
+            <p>Free LTL tools for shippers, sellers and small businesses — estimates only, with the carrier's class final.</p>
+          </div>
+          <div>
+            <h3>Tools</h3>
+            <ul>
+              <li><a href="#freight-class">Freight Class</a></li>
+              <li><a href="#density">Density</a></li>
+              <li><a href="#dim-weight">DIM Weight</a></li>
+              <li><a href="#billable-weight">Billable Weight</a></li>
+              <li><a href="#cwt-cost">CWT Cost</a></li>
+              <li><a href="#pallet-space">Cubic Feet / Pallet Space</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Guides</h3>
+            <ul>
+              <li><a href="#guides">How freight class works</a></li>
+              <li><a href="#guides">Density in 60 seconds</a></li>
+              <li><a href="#guides">DIM weight explained</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>About &amp; contact</h3>
+            <ul>
+              <li><a href="#about">About these tools</a></li>
+              <li><a href="mailto:janmeshverma6@gmail.com">janmeshverma6@gmail.com</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Freight / LTL Calculators — free LTL tools. Revenue: $0.00 · Monetization: not active · Estimates only — the carrier's class is final.</p>
+          <p>Sources: NMFTA (NMFC density scale, Docket 2025-1), FedEx, UPS and Estes Express Lines. The density scale shown on this page is the one effective 19 July 2025.</p>
+        </div>
       </footer>
 
     </main>
@@ -1054,6 +1168,11 @@
         }
 
         ["fc", "den", "dim", "bill", "cwt", "pal"].forEach(initTool);
+
+        var topnav = document.getElementById("topnav");
+        function onScroll() { if (topnav) topnav.classList.toggle("is-scrolled", window.scrollY > 8); }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
       })();
     </script>
   </body>
