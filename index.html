@@ -70,6 +70,14 @@
         },
         {
           "@type": "Question",
+          "name": "How do I calculate the cost from a CWT rate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divide the shipment weight in pounds by 100 to get hundredweight units, then multiply by the rate per CWT. Example: 1,250 lb is 12.5 CWT, so at $18.50 per CWT the linehaul is 12.5 × $18.50 = $231.25 — before the fuel surcharge, accessorial charges and minimum charges a real bill adds."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Is the class from this calculator guaranteed?",
           "acceptedAnswer": {
             "@type": "Answer",
@@ -696,7 +704,7 @@
             </dl>
           </div>
         </div>
-        <p class="formula">Formula: <code>cost = (weight in lb ÷ 100) × rate per CWT</code>. Source: standard LTL hundredweight pricing convention.</p>
+        <p class="formula">Formula: <code>cost = (weight in lb ÷ 100) × rate per CWT</code>. Source: standard LTL hundredweight pricing convention. <a href="#guide-cwt">How CWT pricing works →</a></p>
         <p class="notice"><strong>Estimate only — the carrier's charge is final.</strong> This is the linehaul at the rate you enter, and nothing more: this site quotes no live rates, and a real bill adds a fuel surcharge, accessorial charges and minimum charges on top. Your commodity's own NMFC item may also assign a different class than the density scale, which changes the rate per CWT you would actually be quoted.</p>
       </section>
 
@@ -831,6 +839,25 @@
           </ul>
           <p class="guide-cta"><a href="#dim-weight">Try the DIM Weight Calculator <span aria-hidden="true">→</span></a></p>
         </article>
+
+        <article class="guide" id="guide-cwt">
+          <h3>How CWT pricing works: from a quoted rate to your linehaul cost</h3>
+          <p>LTL linehaul is commonly quoted as a rate per CWT — a hundredweight, which is 100 pounds. The quote is not a price for the shipment; it is a price per 100 lb, so the first step is always to convert your weight into hundredweight units: divide the pounds by 100.</p>
+          <div class="worked">
+            <h4>Worked example</h4>
+            <ol>
+              <li>Weigh the shipment: <strong>1,250 lb</strong>.</li>
+              <li>Convert to hundredweight: 1,250 ÷ 100 = <strong>12.50 CWT</strong>.</li>
+              <li>Multiply by the quoted rate: 12.50 × $18.50 = <strong>$231.25 linehaul</strong>.</li>
+              <li>Cost per pound: $231.25 ÷ 1,250 = <strong>about $0.19</strong>.</li>
+            </ol>
+          </div>
+          <p>A second check with different numbers: a <strong>2,000 lb</strong> shipment is 20 CWT, so at <strong>$22.75 per CWT</strong> the linehaul is 20 × $22.75 = <strong>$455.00</strong>.</p>
+          <h4>What the linehaul is not</h4>
+          <p>The CWT figure is the linehaul only. A real freight bill adds a fuel surcharge, accessorial charges (liftgate, residential delivery, appointment times and the like) and minimum charges on top — so treat the calculator&apos;s number as the starting point for comparing quotes, not the final invoice. And the rate per CWT itself depends on your freight class and lane: a higher class means a higher rate per CWT for the same weight, which is why getting the class right matters before you price anything.</p>
+          <p class="guide-cta"><a href="#cwt-cost">Try the CWT Cost Estimator <span aria-hidden="true">→</span></a></p>
+        </article>
+
       </section>
 
       <!-- FAQ -->
@@ -855,6 +882,11 @@
         <div class="faq-item">
           <h3>What is CWT pricing?</h3>
           <p>CWT stands for hundredweight, which is 100 pounds. LTL linehaul is commonly quoted as a rate per CWT, so the linehaul cost is (weight in lb ÷ 100) × the rate per CWT. A real freight bill also adds a fuel surcharge, accessorial charges and minimum charges on top of the linehaul.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How do I calculate the cost from a CWT rate?</h3>
+          <p>Divide the shipment weight in pounds by 100 to get hundredweight units, then multiply by the rate per CWT. Example: 1,250 lb is 12.5 CWT, so at $18.50 per CWT the linehaul is 12.5 × $18.50 = $231.25 — before the fuel surcharge, accessorial charges and minimum charges a real bill adds. <a href="#guide-cwt">Read the CWT guide</a>.</p>
         </div>
 
         <div class="faq-item">
